@@ -71,7 +71,6 @@ class Netease
 	{
 		$id  = intval($songid);
    		$url = "http://music.163.com/api/cloud/media/url?id=$id&uid=53135729&quality=h";
-		ob_start();
 		$ch  = curl_init();
    		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
@@ -80,7 +79,6 @@ class Netease
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
    	    $cexecute = curl_exec($ch);
     	curl_close($ch);
-		ob_end_clean();
     	if ($cexecute) {
         	$result = json_decode($cexecute, true);
         	if ($result['code'] == 200 && $result['url']) {
