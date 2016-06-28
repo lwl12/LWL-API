@@ -13,14 +13,14 @@ class Netease
             return json_encode($return);
         }
         $Netease = A('Netease', 'event');
-        if (($songinfo = $Netease->SongInfo(intval($_GET["id"]))) == false) {
+        if (($getMP3 = $Netease->getMP3(intval($_GET["id"]))) == false) {
             $return = array(
                 'code' => 501,
                 'msg'  => 'Invalid song or Netease server error',
             );
             return json_encode($return);
         } else {
-            Header("Location: " . str_replace("http://m", "http://p", $songinfo["mp3Url"]));
+            Header("Location: " . $getMP3['url']);
             return true;
         }
     }
